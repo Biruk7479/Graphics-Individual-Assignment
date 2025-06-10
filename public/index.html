@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Desk Lamp</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">Click lamp parts to identify them</div>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { initScene } from './initScene.js';
+        import { createLamp } from './createLamp.js';
+        import { addLighting } from './addLighting.js';
+        import { setupInteraction } from './interaction.js';
+        import { setupCameraAnimation } from './cameraAnimation.js';
+
+        const { scene, camera, renderer } = initScene();
+        const lamp = createLamp(scene);
+        addLighting(scene, lamp);
+        setupInteraction(scene, camera, renderer, lamp);
+        setupCameraAnimation(camera, renderer, scene, lamp);
+    </script>
+</body>
+</html>

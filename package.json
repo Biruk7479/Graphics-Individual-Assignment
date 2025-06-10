@@ -1,0 +1,19 @@
+{
+    "name": "threejs-desk-lamp",
+    "version": "1.0.0",
+    "description": "Interactive 3D Desk Lamp using Three.js",
+    "main": "index.js",
+    "scripts": {
+      "start": "vite",
+      "build": "vite build",
+      "serve": "vite preview"
+    },
+    "dependencies": {
+      "three": "^0.160.0"
+    },
+    "devDependencies": {
+      "vite": "^5.0.0"
+    },
+    "author": "",
+    "license": "ISC"
+  }
