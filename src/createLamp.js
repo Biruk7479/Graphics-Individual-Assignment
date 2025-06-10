@@ -72,6 +72,13 @@ export function createLamp(scene) {
     upperArm.name = 'Upper Arm';
     upperPart.add(upperArm);
 
+    // --- Top Hinge ---
+    const topHingeGeometry = new THREE.SphereGeometry(0.15, 32, 32);
+    const topHinge = new THREE.Mesh(topHingeGeometry, jointMaterial);
+    topHinge.position.set(0, 1.5, 0);
+    topHinge.name = 'Top Hinge';
+    upperPart.add(topHinge);
+
     // --- Head Group ---
     const headGroup = new THREE.Group();
     headGroup.position.set(0, 1.5, 0);

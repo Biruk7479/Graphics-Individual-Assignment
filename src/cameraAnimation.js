@@ -11,6 +11,8 @@ export function setupCameraAnimation(camera, renderer, scene, lamp) {
     controls.maxPolarAngle = Math.PI / 2;
 
     let autoRotate = true;
+    let lastCameraPosition = new THREE.Vector3();
+    let lastCameraTarget = new THREE.Vector3();
     const clock = new THREE.Clock();
 
     function animate() {
@@ -33,15 +35,19 @@ export function setupCameraAnimation(camera, renderer, scene, lamp) {
         renderer.render(scene, camera);
     }
 
-    // Pause auto-rotation on user interaction
+    // Store camera position when interaction starts
     controls.addEventListener('start', () => {
         autoRotate = false;
+        lastCameraPosition.copy(camera.position);
+        lastCameraTarget.copy(controls.target);
     });
 
-    // Resume auto-rotation after interaction ends
+    // Restore camera position when interaction ends
     controls.addEventListener('end', () => {
         setTimeout(() => {
             autoRotate = true;
+            camera.position.copy(lastCameraPosition);
+            controls.target.copy(lastCameraTarget);
         }, 2000);
     });
 
